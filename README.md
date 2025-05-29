@@ -19,6 +19,14 @@ Program ini termasuk dalam kategori Teknik AI **Searching** dan bertujuan untuk 
 2. Buka project dengan IDE yang sesuai (misal Visual Studio).
 3. Jalankan program dan lihat hasilnya.
 
+   ## 🔗 Demo Langsung
+
+Coba langsung aplikasinya di sini:
+
+👉 [Demo di Replit](https://77889780-5a32-4c71-87c2-2b07b8dae048-00-2mrbptnr71cqj.pike.replit.dev/)
+
+---
+
 ## Tentang
 Proyek ini dibuat sebagai tugas individu dalam mata kuliah Kecerdasan Buatan dengan fokus pada teknik searching menggunakan algoritma BFS.
 
