@@ -23,10 +23,6 @@ Program ini termasuk dalam kategori Teknik AI **Searching** dan bertujuan untuk 
 
 Coba langsung aplikasinya di sini:
 
-<a href="https://77889780-5a32-4c71-87c2-2b07b8dae048-00-2mrbptnr71cqj.pike.replit.dev/" target="_blank">
-  <img src="https://img.shields.io/badge/🔗 Demo%20Langsung-blue?style=for-the-badge" alt="Demo Langsung">
-</a>
-
 👉 [Demo di Replit](https://77889780-5a32-4c71-87c2-2b07b8dae048-00-2mrbptnr71cqj.pike.replit.dev/)
 
 ---
