@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Drakula vs Manusia: BFS Menentukan Nasib</title>
+  <style>
+    /* Gaya tampilan antarmuka */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    h1 {
+      color: #222;
+      margin-bottom: 25px;
+    }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    label {
+      font-weight: 600;
+      font-size: 16px;
+      color: #444;
+    }
+    input[type=number] {
+      width: 70px;
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #3498db;
+      text-align: center;
+      margin-left: 8px;
+      transition: border-color 0.3s ease;
+    }
+    input[type=number]:focus {
+      outline: none;
+      border-color: #2980b9;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.5);
+    }
+    button#solveBtn {
+      padding: 10px 24px;
+      font-size: 17px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(52, 152, 219, 0.6);
+      transition: background 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    button#solveBtn:hover {
+      background: linear-gradient(45deg, #2980b9, #1c5980);
+      box-shadow: 0 8px 20px rgba(25, 88, 128, 0.8);
+      transform: scale(1.05);
+    }
+    button#solveBtn:active {
+      transform: scale(0.95);
+    }
+    button#solveBtn:disabled {
+      background: #95a5a6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    #sungai {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #d0ebff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    }
+    .sisi {
+      width: 40%;
+      min-height: 80px;
+      background: #d9f0ff;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-shadow: inset 0 0 8px #a1c9ff;
+    }
+    .perahu {
+      width: 20%;
+      background-color: #f4a261;
+      border: 2px solid #333;
+      border-radius: 12px;
+      padding: 15px 10px;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(244, 162, 97, 0.6);
+      color: #3e1f00;
+      user-select: none;
+    }
+    .karakter {
+      display: inline-block;
+      margin: 5px 8px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background-color: #e76f51;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 3px 8px rgba(231, 111, 81, 0.7);
+      user-select: none;
+      min-width: 28px;
+      text-align: center;
+    }
+    #pesan {
+      color: #c0392b;
+      font-weight: 700;
+      white-space: pre-line;
+      margin-top: 15px;
+      min-height: 40px;
+      font-size: 16px;
+    }
+    #langkah-langkah {
+      margin-top: 25px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #ffffff;
+      padding: 18px 20px;
+      border-radius: 15px;
+      border: 1px solid #ccc;
+      min-height: 170px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      font-size: 16px;
+      color: #222;
+      overflow-y: auto;
+      max-height: 280px;
+    }
+    #langkah-langkah strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #34495e;
+    }
+
+    #kontrolManual {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    #kontrolManual button {
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.5);
+      transition: background-color 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      min-width: 120px;
+      flex-shrink: 0;
+    }
+    #kontrolManual button:hover:not(:disabled) {
+      background-color: #2980b9;
+      box-shadow: 0 6px 15px rgba(41, 128, 185, 0.7);
+      transform: scale(1.05);
+    }
+    #kontrolManual button:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    #kontrolManual button:disabled {
+      background-color: #95a5a6;
+      cursor: not-allowed;
+      box-shadow: none;
+      color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Drakula vs Manusia: BFS Menentukan Nasib</h1>
+  <h4>Penerapan Teknik AI (Searching) Menggunakan Algoritma Breadth-First Search (BFS) untuk Penyelesaian Masalah Drakula dan Manusia</h4>
+  <div class="controls">
+    <label for="inputH">Manusia:
+      <input type="number" id="inputH" value="3" min="1" max="10" />
+    </label>
+    <label for="inputD">Drakula:
+      <input type="number" id="inputD" value="3" min="1" max="10" />
+    </label>
+    <button id="solveBtn" onclick="otomatisPenyelesaian()">Selesaikan dengan AI</button>
+  </div>
+  <div id="pesan"></div>
+
+  <div id="sungai">
+    <div id="kiri" class="sisi"></div>
+    <div id="perahu" class="perahu"></div>
+    <div id="kanan" class="sisi"></div>
+  </div>
+
+  <div id="langkah-langkah">
+    <strong>Langkah-langkah:</strong><br />
+    <div id="daftarLangkah"></div>
+  </div>
+
+  <!-- Kontrol manual untuk navigasi langkah -->
+  <div id="kontrolManual" style="display:none;">
+    <button id="prevBtn" onclick="langkahSebelumnya()" disabled>Sebelumnya</button>
+    <button id="nextBtn" onclick="langkahBerikutnya()">Berikutnya</button>
+    <button id="step1Btn" onclick="keLangkahPertama()">Langkah 1</button>
+    <button id="resetBtn" onclick="resetSemua()">Reset</button>
+  </div>
+
+  <script>
+    // Variabel global
+    let totalManusia = 3,
+      totalDrakula = 3;
+    let jalurSolusi = null; // Menyimpan jalur solusi dari algoritma BFS
+    let langkahSekarang = 0; // Indeks langkah saat ini
+    let sedangBerjalan = false; // Status apakah sedang otomatis berjalan
+    let intervalOtomatis = null; // Interval untuk animasi otomatis
+
+    // Fungsi untuk memeriksa apakah suatu keadaan valid
+    function keadaanValid([manusiaKiri, drakulaKiri, manusiaKanan, drakulaKanan]) {
+      // Cek tidak ada nilai negatif
+      if (manusiaKiri < 0 || drakulaKiri < 0 || manusiaKanan < 0 || drakulaKanan < 0) return false;
+      
+      // Cek di setiap sisi, drakula tidak boleh lebih banyak dari manusia (kecuali tidak ada manusia)
+      if ((manusiaKiri > 0 && drakulaKiri > manusiaKiri) || 
+          (manusiaKanan > 0 && drakulaKanan > manusiaKanan)) return false;
+      
+      return true;
+    }
+
+    // Fungsi untuk mengubah keadaan menjadi string (untuk penyimpanan)
+    function keadaanKeString(keadaan, posisiPerahu) {
+      return `${keadaan.join(",")}|${posisiPerahu}`;
+    }
+
+    // Algoritma BFS untuk mencari solusi
+    function cariSolusiBFS(jumlahManusia, jumlahDrakula) {
+      const antrian = []; // Antrian untuk BFS
+      const sudahDikunjungi = new Set(); // Menyimpan keadaan yang sudah dikunjungi
+      const orangTua = {}; // Menyimpan hubungan parent-child
+      
+      // Kemungkinan gerakan: [manusia, drakula]
+      const gerakanMungkin = [
+        [1, 0], // 1 manusia
+        [2, 0], // 2 manusia
+        [0, 1], // 1 drakula
+        [0, 2], // 2 drakula
+        [1, 1], // 1 manusia dan 1 drakula
+      ];
+
+      // Keadaan awal: semua di kiri
+      const keadaanAwal = [jumlahManusia, jumlahDrakula, 0, 0];
+      // Keadaan tujuan: semua di kanan
+      const keadaanTujuan = [0, 0, jumlahManusia, jumlahDrakula];
+
+      // Mulai BFS dari keadaan awal
+      antrian.push({ keadaan: keadaanAwal, posisiPerahu: "kiri", gerakan: null });
+      sudahDikunjungi.add(keadaanKeString(keadaanAwal, "kiri"));
+
+      while (antrian.length > 0) {
+        const sekarang = antrian.shift();
+        const { keadaan, posisiPerahu } = sekarang;
+        const [ml, dl, mr, dr] = keadaan;
+
+        // Jika sudah mencapai tujuan, kembalikan jalur solusi
+        if (keadaan.join(",") === keadaanTujuan.join(",")) {
+          const jalur = [];
+          let kunci = keadaanKeString(keadaan, posisiPerahu);
+          
+          // Telusuri kembali dari keadaan akhir ke keadaan awal
+          while (kunci in orangTua) {
+            jalur.unshift({
+              keadaan: kunci.split("|")[0].split(",").map(Number),
+              posisiPerahu: kunci.split("|")[1],
+              gerakan: orangTua[kunci].gerakan,
+            });
+            kunci = orangTua[kunci].dari;
+          }
+          
+          // Tambahkan keadaan awal
+          jalur.unshift({ keadaan: keadaanAwal, posisiPerahu: "kiri", gerakan: null });
+          return jalur;
+        }
+
+        // Coba semua kemungkinan gerakan
+        for (let [m, d] of gerakanMungkin) {
+          let keadaanBaru, posisiPerahuBaru;
+          
+          // Jika perahu di kiri, pindah ke kanan
+          if (posisiPerahu === "kiri") {
+            keadaanBaru = [ml - m, dl - d, mr + m, dr + d];
+            posisiPerahuBaru = "kanan";
+          } 
+          // Jika perahu di kanan, pindah ke kiri
+          else {
+            keadaanBaru = [ml + m, dl + d, mr - m, dr - d];
+            posisiPerahuBaru = "kiri";
+          }
+
+          // Periksa apakah keadaan baru valid
+          if (keadaanValid(keadaanBaru)) {
+            const str = keadaanKeString(keadaanBaru, posisiPerahuBaru);
+            
+            // Jika belum dikunjungi, tambahkan ke antrian
+            if (!sudahDikunjungi.has(str)) {
+              sudahDikunjungi.add(str);
+              orangTua[str] = { dari: keadaanKeString(keadaan, posisiPerahu), gerakan: [m, d] };
+              antrian.push({ keadaan: keadaanBaru, posisiPerahu: posisiPerahuBaru, gerakan: [m, d] });
+            }
+          }
+        }
+      }
+
+      // Jika tidak ditemukan solusi
+      return null;
+    }
+
+    // Fungsi untuk menjalankan solusi otomatis
+    function otomatisPenyelesaian() {
+      totalManusia = parseInt(document.getElementById("inputH").value);
+      totalDrakula = parseInt(document.getElementById("inputD").value);
+      document.getElementById("pesan").innerText = "";
+      document.getElementById("daftarLangkah").innerHTML = "";
+      document.getElementById("kontrolManual").style.display = "none";
+
+      // Cari solusi dengan BFS
+      jalurSolusi = cariSolusiBFS(totalManusia, totalDrakula);
+
+      // Jika tidak ada solusi
+      if (!jalurSolusi) {
+        document.getElementById("pesan").innerText = 
+          `⚠️ Tidak ada solusi yang valid!\n\nAlasan: Jika jumlah drakula melebihi jumlah manusia di salah satu sisi sungai, maka manusia akan dimakan oleh drakula.`;
+        return;
+      }
+
+      // Nonaktifkan input selama proses
+      document.getElementById("inputH").disabled = true;
+      document.getElementById("inputD").disabled = true;
+      document.getElementById("solveBtn").disabled = true;
+
+      sedangBerjalan = true;
+      let langkah = 0;
+
+      // Jalankan animasi langkah demi langkah
+      intervalOtomatis = setInterval(() => {
+        if (langkah >= jalurSolusi.length) {
+          clearInterval(intervalOtomatis);
+          sedangBerjalan = false;
+          document.getElementById("pesan").innerText =
+            "✅ AI berhasil menyelesaikan misi penyebrangan!";
+          langkahSekarang = jalurSolusi.length - 1;
+          document.getElementById("kontrolManual").style.display = "flex";
+          perbaruiTombol();
+          return;
+        }
+
+        const sekarang = jalurSolusi[langkah];
+        tampilkanKeadaanAI(sekarang.keadaan, sekarang.posisiPerahu);
+
+        // Tampilkan deskripsi langkah
+        if (langkah > 0 && sekarang.gerakan) {
+          const [m, d] = sekarang.gerakan;
+          const arah = jalurSolusi[langkah - 1].posisiPerahu === "kiri" ? "ke kanan" : "kembali ke kiri";
+          const deskripsi = `Langkah ${langkah}: ${m > 0 ? `${m} Manusia` : ""}${
+            m > 0 && d > 0 ? " dan " : ""
+          }${d > 0 ? `${d} Drakula` : ""} menyebrang ${arah}`;
+          const el = document.createElement("div");
+          el.innerText = deskripsi;
+          document.getElementById("daftarLangkah").appendChild(el);
+        }
+
+        langkah++;
+      }, 1000);
+    }
+
+    // Fungsi untuk menampilkan keadaan permainan
+    function tampilkanKeadaanAI(keadaan, posisiPerahu) {
+      const [ml, dl, mr, dr] = keadaan;
+      
+      // Buat array karakter di kiri dan kanan
+      const kiri = [].concat(Array(ml).fill("M"), Array(dl).fill("D"));
+      const kanan = [].concat(Array(mr).fill("M"), Array(dr).fill("D"));
+
+      // Kosongkan tampilan sebelumnya
+      document.getElementById("kiri").innerHTML = "";
+      document.getElementById("kanan").innerHTML = "";
+      document.getElementById("perahu").innerHTML = `<strong>Perahu: ${posisiPerahu}</strong><br>`;
+
+      // Tambahkan karakter ke sisi kiri
+      kiri.forEach((karakter) => {
+        const el = document.createElement("div");
+        el.className = "karakter";
+        el.innerText = karakter;
+        document.getElementById("kiri").appendChild(el);
+      });
+
+      // Tambahkan karakter ke sisi kanan
+      kanan.forEach((karakter) => {
+        const el = document.createElement("div");
+        el.className = "karakter";
+        el.innerText = karakter;
+        document.getElementById("kanan").appendChild(el);
+      });
+    }
+
+    // Fungsi untuk menampilkan langkah tertentu
+    function tampilkanLangkah(indeks) {
+      if (!jalurSolusi || indeks < 0 || indeks >= jalurSolusi.length) return;
+
+      langkahSekarang = indeks;
+      document.getElementById("daftarLangkah").innerHTML = "";
+
+      // Tampilkan semua langkah dari awal sampai indeks sekarang
+      for (let i = 1; i <= langkahSekarang; i++) {
+        const dataLangkah = jalurSolusi[i];
+        const posisiPerahuSebelumnya = jalurSolusi[i - 1].posisiPerahu;
+        const [m, d] = dataLangkah.gerakan;
+        const arah = posisiPerahuSebelumnya === "kiri" ? "ke kanan" : "kembali ke kiri";
+        const deskripsi = `Langkah ${i}: ${m > 0 ? `${m} Manusia` : ""}${
+          m > 0 && d > 0 ? " dan " : ""
+        }${d > 0 ? `${d} Drakula` : ""} menyebrang ${arah}`;
+        const el = document.createElement("div");
+        el.innerText = deskripsi;
+        document.getElementById("daftarLangkah").appendChild(el);
+      }
+
+      // Tampilkan keadaan saat ini
+      tampilkanKeadaanAI(jalurSolusi[indeks].keadaan, jalurSolusi[indeks].posisiPerahu);
+      perbaruiTombol();
+    }
+
+    // Fungsi untuk memperbarui status tombol navigasi
+    function perbaruiTombol() {
+      document.getElementById("prevBtn").disabled = langkahSekarang <= 0;
+      document.getElementById("nextBtn").disabled = langkahSekarang >= jalurSolusi.length - 1;
+      document.getElementById("step1Btn").disabled = langkahSekarang <= 1;
+    }
+
+    // Fungsi untuk pindah ke langkah berikutnya
+    function langkahBerikutnya() {
+      if (langkahSekarang < jalurSolusi.length - 1) {
+        tampilkanLangkah(langkahSekarang + 1);
+      }
+    }
+
+    // Fungsi untuk pindah ke langkah sebelumnya
+    function langkahSebelumnya() {
+      if (langkahSekarang > 0) {
+        tampilkanLangkah(langkahSekarang - 1);
+      }
+    }
+
+    // Fungsi untuk pindah ke langkah pertama (setelah keadaan awal)
+    function keLangkahPertama() {
+      tampilkanLangkah(1);
+    }
+
+    // Fungsi untuk mereset semua ke keadaan awal
+    function resetSemua() {
+      // Hentikan animasi jika sedang berjalan
+      if (sedangBerjalan && intervalOtomatis) {
+        clearInterval(intervalOtomatis);
+        sedangBerjalan = false;
+      }
+
+      // Reset semua variabel dan tampilan
+      jalurSolusi = null;
+      langkahSekarang = 0;
+      document.getElementById("pesan").innerText = "";
+      document.getElementById("daftarLangkah").innerHTML = "";
+      document.getElementById("kontrolManual").style.display = "none";
+
+      // Aktifkan kembali input
+      document.getElementById("inputH").disabled = false;
+      document.getElementById("inputD").disabled = false;
+      document.getElementById("solveBtn").disabled = false;
+
+      // Tampilkan keadaan awal
+      tampilkanKeadaanAI([totalManusia, totalDrakula, 0, 0], "kiri");
+    }
+
+    // Tampilkan keadaan awal saat halaman dimuat
+    tampilkanKeadaanAI([totalManusia, totalDrakula, 0, 0], "kiri");
+  </script>
+</body>
+</html>

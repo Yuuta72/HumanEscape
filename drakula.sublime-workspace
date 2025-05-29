@@ -1,0 +1,223 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"jk",
+				"jk_dosen"
+			],
+			[
+				"whi",
+				"whitesmoke"
+			],
+			[
+				"dark",
+				"darkgrey"
+			],
+			[
+				"w",
+				"white"
+			],
+			[
+				"c",
+				"color"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/software/xampp/htdocs/pmr/index.php",
+		"/C/software/xampp/htdocs/pmr/style.css",
+		"/C/software/xampp/htdocs/pmr/script.js",
+		"/C/software/xampp/htdocs/pmr/light reveal txt.css",
+		"/C/software/xampp/htdocs/week5/delete.css",
+		"/C/software/xampp/htdocs/week5/edit_dosen.php",
+		"/C/software/xampp/htdocs/week5/edit_dosen.css",
+		"/C/software/xampp/htdocs/week5/create.php",
+		"/C/software/xampp/htdocs/week5/create.css",
+		"/C/software/xampp/htdocs/week5/create_dosen.php",
+		"/C/software/xampp/htdocs/week5/create_dosen.css",
+		"/C/software/xampp/htdocs/week1/edit.php",
+		"/C/software/xampp/htdocs/week1/create_dosen.php",
+		"/C/software/xampp/htdocs/week1/metodeget.php",
+		"/C/software/xampp/htdocs/week1/metodegetproses.php",
+		"/C/software/xampp/htdocs/week1/metodepostproses.php",
+		"/C/software/xampp/htdocs/week1/metodepost.php",
+		"/C/software/xampp/htdocs/week1/forminputmahasiswa.php",
+		"/C/software/xampp/htdocs/week1/latihanoperator.php",
+		"/C/software/xampp/htdocs/week1/latihan2.php",
+		"/C/software/xampp/htdocs/week1/Operatorstring.php",
+		"/C/software/xampp/htdocs/week1/Operatorlogika.php",
+		"/C/software/xampp/htdocs/week1/Operatorperbandingan.php",
+		"/C/software/xampp/htdocs/week1/Operatoraritmatika.php",
+		"/C/software/xampp/htdocs/week1/contoh06.php",
+		"/C/software/xampp/htdocs/week1/contoh07.php",
+		"/C/software/xampp/htdocs/week1/contoh05.php",
+		"/C/software/xampp/htdocs/week1/contoh04.php",
+		"/C/software/xampp/htdocs/week1/jualvario.html",
+		"/C/software/xampp/htdocs/week1/contoh03.html",
+		"/C/Users/LENOVO/Documents/Kuliah/SEMESTER 4/pemrogaman web/nama.html",
+		"/C/software yuu/xampp/htdocs/Absensi siswa/koneksi.php",
+		"/C/software yuu/xampp/htdocs/Project-CRUD-PHP-Data-Siswa-master/proses-pendaftaran.php",
+		"/C/software yuu/xampp/htdocs/Project-CRUD-PHP-Data-Siswa-master/list-database.php",
+		"/C/software yuu/xampp/htdocs/Project-CRUD-PHP-Data-Siswa-master/proses-edit-data.php",
+		"/C/software yuu/xampp/htdocs/Project-CRUD-PHP-Data-Siswa-master/configuration.php",
+		"/C/software yuu/xampp/htdocs/Project-CRUD-PHP-Data-Siswa-master/Project-CRUD-PHP-Data-Siswa-master/index.php"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 107.2,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.8
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "drakula.sublime-project",
+	"replace":
+	{
+		"height": 52.8
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
